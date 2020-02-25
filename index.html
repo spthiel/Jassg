@@ -1,0 +1,41 @@
+<head>
+	<script>
+		let form;
+		let label;
+		function onInput() {
+			if(!form) {
+				form = document.forms[0];
+			}	
+			let namea = form.namea.value;
+			let nameb = form.nameb.value;
+			if(!namea || !nameb) {
+				return;
+			}
+			let out = "";
+			out += namea.substring(0, namea.length/2);
+			out += nameb.substring(nameb.length/2);
+			(label = label || form.getElementsByTagName("label")[0]).innerText = out;
+		}
+	</script>
+	<style>
+		form {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%,-50%);
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body>
+
+	<form>
+		<input name="namea" type="text" placeholder="Name 1" onkeyup="onInput()">
+		<input name="nameb" type="text" placeholder="Name 2" onkeyup="onInput()">
+		<label id="out"></label>
+	</form>
+
+</body>
